@@ -1,0 +1,62 @@
+body {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+h1 {
+  font-weight: bold !important;
+  margin-top: 10px;
+}
+
+h3 {
+  padding: 10pt;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+strong {
+  font-size: 16pt;
+}
+
+div {
+  padding: 5pt;
+}
+
+.container {
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  border-radius: 15px;
+  margin: 30pt;
+  padding: 10pt;
+  text-align: center;
+}
+
+.col-1 {
+  padding-left: 0 !important;
+  text-align: left;
+}
+
+.current-location {
+  font-size: 10pt;
+}
+
+.fas {
+  color: #7d8f9c;
+  font-size: 36px;
+}
+
+.temperature-today {
+  font-size: 36pt;
+  margin-left: 20px;
+}
+
+.units {
+  position: relative;
+  top: -20px;
+}
+
+.weather-today {
+  font-size: 52pt;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather</title>
+  <link rel="stylesheet" href="src/style.css" />
+  <script src="https://kit.fontawesome.com/71e6af3b3b.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="src/script.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h3>
+      Real-time Weather
+    </h3>
+    <form id="search-form">
+      <div class="row align-items-center">
+        <div class="col-8">
+          <input type="text" class="form-control" placeholder="Search for a city" autofocus="on" autocomplete="off"
+            id="city-input" />
+        </div>
+        <div class="col-1">
+          <input type="submit" class="btn btn-outline-secondary" value="🔍" />
+        </div>
+        <div class="col-2">
+          <input type="button" class="btn btn-outline-secondary current-location" value="Current location"
+            id="current-location" />
+        </div>
+    </form>
+    <div class="row align-items-center">
+      <div class="col-8">
+        <h1>Fresno</h1>
+        <ul>
+          <li id="time">
+            Current Time
+          </li>
+          <li>
+            Showers
+          </li>
+        </ul>
+        <br />
+        <i class="fas fa-cloud-rain weather-today"></i>
+        <span class="temperature-today" id="temperature-today">
+          Temp
+        </span>
+        <span class="units">
+          <a href="#" id="celsius-link">°C</a> |
+          <a href="#" id="fahrenheit-link">°F</a>
+        </span>
+      </div>
+      <div class="col-4">
+        <div>Rain</div>
+        <div>🌬️ 0 m/s</div>
+        <div>💧 86%</div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col">
+        Fri
+        <div>
+          <i class="fas fa-cloud-sun"></i>
+        </div>
+        <div>
+          <strong>12°</strong>
+        </div>
+        9°
+      </div>
+      <div class="col">
+        Sat
+        <div>
+          <i class="fas fa-cloud-sun"></i>
+        </div>
+        <div>
+          <strong>13°</strong>
+        </div>
+        7°
+      </div>
+      <div class="col">
+        Sun
+        <div>
+          <i class="fas fa-cloud-sun"></i>
+        </div>
+        <div>
+          <strong>13°</strong>
+        </div>
+        5°
+      </div>
+      <div class="col">
+        Mon
+        <div>
+          <i class="fas fa-cloud"></i>
+        </div>
+        <div>
+          <strong>9°</strong>
+        </div>
+        5°
+      </div>
+      <div class="col">
+        Tue
+        <div>
+          <i class="fas fa-cloud-rain"></i>
+        </div>
+        <div>
+          <strong>10°</strong>
+        </div>
+        4°
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
