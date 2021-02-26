@@ -47,7 +47,7 @@ div {
   font-size: 36px;
 }
 
-.temperature-today {
+#temperature-today {
   font-size: 36pt;
   margin-left: 20px;
 }

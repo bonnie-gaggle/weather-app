@@ -5,13 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather</title>
-  <link rel="stylesheet" href="src/style.css" />
   <script src="https://kit.fontawesome.com/71e6af3b3b.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+  integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="src/style.css" />
 </head>
 
 <body>
@@ -35,19 +35,16 @@
     </form>
     <div class="row align-items-center">
       <div class="col-8">
-        <h1>Fresno</h1>
+        <h1></h1>
         <ul>
           <li id="time">
-            Current Time
           </li>
-          <li>
-            Showers
+          <li id="condition">
           </li>
         </ul>
         <br />
         <i class="fas fa-cloud-rain weather-today"></i>
-        <span class="temperature-today" id="temperature-today">
-          Temp
+        <span id="temperature-today">
         </span>
         <span class="units">
           <a href="#" id="celsius-link">°C</a> |
@@ -55,9 +52,13 @@
         </span>
       </div>
       <div class="col-4">
-        <div>Rain</div>
-        <div>🌬️ 0 m/s</div>
-        <div>💧 86%</div>
+        <ul>
+          <li id="humidity">
+            💧
+          </li>
+          <li id="wind">
+            🌬️
+          </li>
       </div>
     </div>
 
