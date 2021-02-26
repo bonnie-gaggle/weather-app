@@ -16,108 +16,111 @@
 
 <body>
   <div class="container">
-    <h3>
-      Real-time Weather
-    </h3>
-    <form id="search-form">
+    <div class="weather-app-wrapper">
+      <h3>
+        Real-time Weather
+      </h3>
+      <form id="search-form">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <input type="text" class="form-control" placeholder="Search for a city" autofocus="on" autocomplete="off"
+              id="city-input" />
+          </div>
+          <div class="col-1">
+            <input type="submit" class="btn btn-outline-secondary" value="🔍" />
+          </div>
+          <div class="col-2">
+            <input type="button" class="btn btn-outline-secondary current-location" value="Current location"
+              id="current-location" />
+          </div>
+      </form>
       <div class="row align-items-center">
         <div class="col-8">
-          <input type="text" class="form-control" placeholder="Search for a city" autofocus="on" autocomplete="off"
-            id="city-input" />
+          <h1></h1>
+          <ul>
+            <li id="time">
+            </li>
+            <li id="condition">
+            </li>
+          </ul>
+          <br />
+          <i class="fas fa-cloud-rain weather-today"></i>
+          <span id="temperature-today">
+          </span>
+          <span class="units">
+            <a href="#" id="celsius-link">°C</a> |
+            <a href="#" id="fahrenheit-link">°F</a>
+          </span>
         </div>
-        <div class="col-1">
-          <input type="submit" class="btn btn-outline-secondary" value="🔍" />
+        <div class="col-4">
+          <ul>
+            <li id="humidity">
+              💧
+            </li>
+            <li id="wind">
+              🌬️
+            </li>
         </div>
-        <div class="col-2">
-          <input type="button" class="btn btn-outline-secondary current-location" value="Current location"
-            id="current-location" />
-        </div>
-    </form>
-    <div class="row align-items-center">
-      <div class="col-8">
-        <h1></h1>
-        <ul>
-          <li id="time">
-          </li>
-          <li id="condition">
-          </li>
-        </ul>
-        <br />
-        <i class="fas fa-cloud-rain weather-today"></i>
-        <span id="temperature-today">
-        </span>
-        <span class="units">
-          <a href="#" id="celsius-link">°C</a> |
-          <a href="#" id="fahrenheit-link">°F</a>
-        </span>
       </div>
-      <div class="col-4">
-        <ul>
-          <li id="humidity">
-            💧
-          </li>
-          <li id="wind">
-            🌬️
-          </li>
-      </div>
-    </div>
-
-    <div class="row align-items-center">
-      <div class="col">
-        Fri
-        <div>
-          <i class="fas fa-cloud-sun"></i>
+  
+      <div class="row align-items-center">
+        <div class="col">
+          Fri
+          <div>
+            <i class="fas fa-cloud-sun"></i>
+          </div>
+          <div>
+            <strong>12°</strong>
+          </div>
+          9°
         </div>
-        <div>
-          <strong>12°</strong>
+        <div class="col">
+          Sat
+          <div>
+            <i class="fas fa-cloud-sun"></i>
+          </div>
+          <div>
+            <strong>13°</strong>
+          </div>
+          7°
         </div>
-        9°
-      </div>
-      <div class="col">
-        Sat
-        <div>
-          <i class="fas fa-cloud-sun"></i>
+        <div class="col">
+          Sun
+          <div>
+            <i class="fas fa-cloud-sun"></i>
+          </div>
+          <div>
+            <strong>13°</strong>
+          </div>
+          5°
         </div>
-        <div>
-          <strong>13°</strong>
+        <div class="col">
+          Mon
+          <div>
+            <i class="fas fa-cloud"></i>
+          </div>
+          <div>
+            <strong>9°</strong>
+          </div>
+          5°
         </div>
-        7°
-      </div>
-      <div class="col">
-        Sun
-        <div>
-          <i class="fas fa-cloud-sun"></i>
+        <div class="col">
+          Tue
+          <div>
+            <i class="fas fa-cloud-rain"></i>
+          </div>
+          <div>
+            <strong>10°</strong>
+          </div>
+          4°
         </div>
-        <div>
-          <strong>13°</strong>
-        </div>
-        5°
-      </div>
-      <div class="col">
-        Mon
-        <div>
-          <i class="fas fa-cloud"></i>
-        </div>
-        <div>
-          <strong>9°</strong>
-        </div>
-        5°
-      </div>
-      <div class="col">
-        Tue
-        <div>
-          <i class="fas fa-cloud-rain"></i>
-        </div>
-        <div>
-          <strong>10°</strong>
-        </div>
-        4°
       </div>
     </div>
   </div>
-  <br />
-  <a href="https://github.com/hanksbonniec/weather-app">GitHub Repository</a>
-  <script type="text/javascript" src="src/script.js"></script>
+<small>
+  <a href="https://github.com/hanksbonniec/weather-app">Open-source code</a> by Bonnie Hanks
+</small>
+<script type="text/javascript" src="src/script.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 body {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: "Montserrat", sans-serif;
+  max-width: 800px;
 }
 
 h1 {
@@ -25,7 +26,7 @@ div {
   padding: 5pt;
 }
 
-.container {
+.weather-app-wrapper {
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
   border-radius: 15px;
   margin: 30pt;
