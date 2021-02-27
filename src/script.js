@@ -25,12 +25,16 @@ let now = new Date();
 document.getElementById("time").innerHTML = formatTime(now);
 
 function updateTemp(response) {
-  let heading = document.querySelector("h1");
-  heading.innerHTML = response.data.name;
-
+  let cityElement = document.querySelector("h1");
   let todayTempElement = document.querySelector("#temperature-today");
-  let temperature = Math.round(response.data.main.temp);
-  todayTempElement.innerHTML = temperature;
+  let conditionElement = document.querySelector("#condition");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  cityElement.innerHTML = response.data.name;
+  todayTempElement.innerHTML = Math.round(response.data.main.temp);
+  conditionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
 }
 
 function searchCity(event) {
