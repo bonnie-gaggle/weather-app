@@ -18,6 +18,10 @@ ul {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 strong {
   font-size: 16pt;
 }
@@ -43,9 +47,14 @@ div {
   font-size: 10pt;
 }
 
-.fas {
-  color: #7d8f9c;
-  font-size: 36px;
+.active {
+  color: black;
+  cursor: default;
+}
+
+.active:hover {
+  color: black;
+  text-decoration: none;
 }
 
 #temperature-today {

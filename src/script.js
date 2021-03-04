@@ -35,8 +35,9 @@ function updateTemp(response) {
   let iconElement = document.querySelector("#icon");
   let description = response.data.weather[0].description; 
   let iconCode = response.data.weather[0].icon;
+  celsiusTemp = response.data.main.temp;
   cityElement.innerHTML = response.data.name;
-  todayTempElement.innerHTML = Math.round(response.data.main.temp);
+  todayTempElement.innerHTML = Math.round(celsiusTemp);
   conditionElement.innerHTML = description;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
@@ -74,8 +75,6 @@ function cityLocation(position) {
   axios.get(apiUrl).then(updateTemp);
 }
 
-search("Los Angeles");
-
 function askLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(cityLocation);
@@ -88,18 +87,25 @@ currentLocation.addEventListener("click", askLocation);
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature-today");
-  let temperature = temperatureElement.innerHTML;
-  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = Math.round((celsiusTemp * 9) / 5 + 32);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature-today");
-  temperatureElement.innerHTML = 11;
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
+
+let celsiusTemp = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+search("Los Angeles");
