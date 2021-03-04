@@ -1,4 +1,5 @@
-function formatTime(date) {
+function formatTime(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -30,26 +31,33 @@ function updateTemp(response) {
   let conditionElement = document.querySelector("#condition");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
+  let timeElement = document.querySelector("#time");
   cityElement.innerHTML = response.data.name;
   todayTempElement.innerHTML = Math.round(response.data.main.temp);
   conditionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  timeElement.innerHTML = formatTime(response.data.dt*1000);
 }
 
-function searchCity(event) {
-  event.preventDefault();
+function search(city){
   let apiKey = "96705b159023614cfe376449b9563ca3";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?";
   let units = "metric";
-  let cityInput = document.querySelector("#city-input");
-  let city = cityInput.value;
   let apiUrl = `${apiEndpoint}q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateTemp);
+
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input");
+  let city = cityInput.value;
+  search(city);
 }
 
 let cityInput = document.querySelector("#search-form");
-cityInput.addEventListener("submit", searchCity);
+cityInput.addEventListener("submit", handleSubmit);
 
 function cityLocation(position) {
   let lat = position.coords.latitude;
@@ -60,6 +68,8 @@ function cityLocation(position) {
   let apiUrl = `${apiEndpoint}lat=${lat}&lon=${long}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateTemp);
 }
+
+search("Los Angeles");
 
 function askLocation(event) {
   event.preventDefault();
