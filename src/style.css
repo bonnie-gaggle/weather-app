@@ -47,6 +47,11 @@ div {
   font-size: 10pt;
 }
 
+.forecast-icon {
+  width: 50px;
+  height: auto;
+}
+
 .active {
   color: black;
   cursor: default;

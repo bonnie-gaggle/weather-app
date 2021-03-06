@@ -22,6 +22,20 @@ function formatTime(timestamp) {
   return `${day}, ${hour}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp);
+  let days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ];
+  return `${days[date.getDay()]}`;
+}
+
 let now = new Date();
 document.getElementById("time").innerHTML = formatTime(now);
 
@@ -46,6 +60,31 @@ function updateTemp(response) {
   iconElement.setAttribute("alt", description);
 }
 
+function forecast(response){
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 5; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col">
+      ${formatDay(forecast.dt * 1000)}
+      <div>
+        <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" class="forecast-icon"/>
+      </div>
+      <div class="forecast-temp">
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong>
+        ${Math.round(forecast.main.temp_min)}°
+      </div>
+    </div>
+  `;
+    
+  }
+}
+
 function search(city){
   let apiKey = "96705b159023614cfe376449b9563ca3";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?";
@@ -53,6 +92,8 @@ function search(city){
   let apiUrl = `${apiEndpoint}q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateTemp);
 
+  apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(forecast);
 }
 
 function handleSubmit(event) {
@@ -83,7 +124,7 @@ function askLocation(event) {
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", askLocation);
 
-//From old challenges, converting between metric and imperial (placeholder)
+
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature-today");
