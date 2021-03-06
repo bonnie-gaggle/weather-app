@@ -64,9 +64,33 @@ function forecast(response){
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
+  let maxTemp = null;
+  let minTemp = null;
 
+  /*Not perfect. Shows max/min temp for 24-hour period centered on time of data retrieval.
+  How do I define the start/end points of the max/min as 00:00 to 11:59?*/
   for (let index = 0; index < 5; index++) {
-    forecast = response.data.list[index];
+    forecast = response.data.list[index*8];
+    maxTemp = `${Math.max(
+      response.data.list[index*8].main.temp_max,
+      response.data.list[index*8+1].main.temp_max,
+      response.data.list[index*8+2].main.temp_max,
+      response.data.list[index*8+3].main.temp_max,
+      response.data.list[index*8+4].main.temp_max,
+      response.data.list[index*8+5].main.temp_max,
+      response.data.list[index*8+6].main.temp_max,
+      response.data.list[index*8+7].main.temp_max,
+      )}`;
+    minTemp = `${Math.min(
+      response.data.list[index*8].main.temp_min,
+      response.data.list[index*8+1].main.temp_min,
+      response.data.list[index*8+2].main.temp_min,
+      response.data.list[index*8+3].main.temp_min,
+      response.data.list[index*8+4].main.temp_min,
+      response.data.list[index*8+5].main.temp_min,
+      response.data.list[index*8+6].main.temp_min,
+      response.data.list[index*8+7].main.temp_min,
+      )}`;
     forecastElement.innerHTML += `
     <div class="col">
       ${formatDay(forecast.dt * 1000)}
@@ -75,9 +99,9 @@ function forecast(response){
       </div>
       <div class="forecast-temp">
         <strong>
-          ${Math.round(forecast.main.temp_max)}°
+          ${Math.round(maxTemp)}°
         </strong>
-        ${Math.round(forecast.main.temp_min)}°
+        ${Math.round(minTemp)}°
       </div>
     </div>
   `;
