@@ -22,7 +22,7 @@ function formatTime(timestamp) {
   return `${day}, ${hour}:${minutes}`;
 }
 
-function formatDay(timestamp) {
+function formatDay(timestamp) { // shortened days for forecast
   let date = new Date(timestamp);
   let days = [
     "Sun",
@@ -39,7 +39,7 @@ function formatDay(timestamp) {
 let now = new Date();
 document.getElementById("time").innerHTML = formatTime(now);
 
-function updateTemp(response) {
+function updateTemp(response) { //rewrite HTML for main portion based on city/location searched
   let cityElement = document.querySelector("h1");
   let todayTempElement = document.querySelector("#temperature-today");
   let conditionElement = document.querySelector("#condition");
@@ -70,27 +70,15 @@ function forecast(response){
   /*Not perfect. Shows max/min temp for 24-hour period centered on time of data retrieval.
   How do I define the start/end points of the max/min as 00:00 to 11:59?*/
   for (let index = 0; index < 5; index++) {
-    forecast = response.data.list[index*8];
-    maxTemp = `${Math.max(
-      response.data.list[index*8].main.temp_max,
-      response.data.list[index*8+1].main.temp_max,
-      response.data.list[index*8+2].main.temp_max,
-      response.data.list[index*8+3].main.temp_max,
-      response.data.list[index*8+4].main.temp_max,
-      response.data.list[index*8+5].main.temp_max,
-      response.data.list[index*8+6].main.temp_max,
-      response.data.list[index*8+7].main.temp_max,
-      )}`;
-    minTemp = `${Math.min(
-      response.data.list[index*8].main.temp_min,
-      response.data.list[index*8+1].main.temp_min,
-      response.data.list[index*8+2].main.temp_min,
-      response.data.list[index*8+3].main.temp_min,
-      response.data.list[index*8+4].main.temp_min,
-      response.data.list[index*8+5].main.temp_min,
-      response.data.list[index*8+6].main.temp_min,
-      response.data.list[index*8+7].main.temp_min,
-      )}`;
+    forecast = response.data.list[index*8]; //data from api is for every 3 hours, so *8 makes it every 24
+    let maxTempList = [];
+    let minTempList = [];
+    for (let i = 0; i< 8; i++) { //gather max and min temp data for the next 24 hours, put in array
+      maxTempList.push(response.data.list[index*8+i].main.temp_max);
+      minTempList.push(response.data.list[index*8+i].main.temp_min);
+    }
+    maxTemp = Math.max(...maxTempList); //find max of array of temperatures
+    minTemp = Math.min(...minTempList);
     forecastElement.innerHTML += `
     <div class="col">
       ${formatDay(forecast.dt * 1000)}
@@ -111,12 +99,12 @@ function forecast(response){
 
 function search(city){
   let apiKey = "96705b159023614cfe376449b9563ca3";
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/";
   let units = "metric";
-  let apiUrl = `${apiEndpoint}q=${city}&units=${units}&appid=${apiKey}`;
+  let apiUrl = `${apiEndpoint}weather?q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateTemp);
 
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  apiUrl = `${apiEndpoint}forecast?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(forecast);
 }
 
@@ -134,11 +122,11 @@ function cityLocation(position) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
   let apiKey = "96705b159023614cfe376449b9563ca3";
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/";
   let units = "metric";
-  let apiUrl = `${apiEndpoint}lat=${lat}&lon=${long}&units=${units}&appid=${apiKey}`;
+  let apiUrl = `${apiEndpoint}weather?lat=${lat}&lon=${long}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateTemp);
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=${units}&appid=${apiKey}`;
+  apiUrl = `${apiEndpoint}forecast?lat=${lat}&lon=${long}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(forecast);
 }
 
