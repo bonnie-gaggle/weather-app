@@ -56,7 +56,7 @@ function updateTemp(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   timeElement.innerHTML = formatTime(response.data.dt*1000);
-  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+  iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${iconCode}@2x.png`);
   iconElement.setAttribute("alt", description);
 }
 
@@ -116,7 +116,7 @@ function search(city){
   let apiUrl = `${apiEndpoint}q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateTemp);
 
-  apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(forecast);
 }
 
@@ -138,6 +138,8 @@ function cityLocation(position) {
   let units = "metric";
   let apiUrl = `${apiEndpoint}lat=${lat}&lon=${long}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateTemp);
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=${units}&appid=${apiKey}`;
+  axios.get(apiUrl).then(forecast);
 }
 
 function askLocation(event) {
